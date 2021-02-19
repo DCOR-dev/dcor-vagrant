@@ -1,7 +1,7 @@
 What is this?
 =============
 
-DCOR uses virtualbox images created with `Vagrant <https://www.vagrantup.com/>` for testing.
+DCOR uses virtualbox images created with `Vagrant <https://www.vagrantup.com/>`_ for testing.
 This repository contains the recipe for creating the
 `dcor-test <https://app.vagrantup.com/paulmueller/boxes/dcor-test>`_ vagrant boxes.
 
