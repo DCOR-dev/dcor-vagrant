@@ -17,13 +17,13 @@ distribute the final box image for testing.
 
 How does testing work?
 ======================
-Let's use the ckanext-dcor_schemas repository as an example. If you clone into it, you will
-have the files
+Let's use the `ckanext-dcor_schemas<https://github.com/DCOR-dev/ckanext-dcor_schemas>`_ repository as an example.
+If you clone into it, you will have the files
 `Vagrantfile <https://github.com/DCOR-dev/ckanext-dcor_schemas/blob/master/Vagrantfile>`_
 (the recipe for setting up the box) and
 `vagrant-run-tests.sh <https://github.com/DCOR-dev/ckanext-dcor_schemas/blob/master/vagrant-run-tests.sh>`_
 (that installs the current working tree into the CKAN environment and executes the tests).
-When you run `vagrant up` in this directory, vagrant uses `Vagrantfile` to setup the virtualbox
+When you run ``vagrant up`` in this directory, vagrant uses ``Vagrantfile`` to setup the virtualbox
 image (download and rsync the current working directory of the host to `/testing` on the guest).
 To run the tests, simply run:
 
