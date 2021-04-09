@@ -17,7 +17,7 @@ distribute the final box image for testing.
 
 How does testing work?
 ======================
-Let's use the `ckanext-dcor_schemas<https://github.com/DCOR-dev/ckanext-dcor_schemas>`_ repository as an example.
+Let's use the `ckanext-dcor_schemas <https://github.com/DCOR-dev/ckanext-dcor_schemas>`_ repository as an example.
 If you clone into it, you will have the files
 `Vagrantfile <https://github.com/DCOR-dev/ckanext-dcor_schemas/blob/master/Vagrantfile>`_
 (the recipe for setting up the box) and
@@ -25,9 +25,7 @@ If you clone into it, you will have the files
 (that installs the current working tree into the CKAN environment and executes the tests).
 When you run ``vagrant up`` in this directory, vagrant uses ``Vagrantfile`` to setup the virtualbox
 image (download and rsync the current working directory of the host to `/testing` on the guest).
-To run the tests, simply run:
-
-.. code::
+To run the tests, simply run::
 
     vagrant ssh -- sudo bash /testing/vagrant-run-tests.sh
 
@@ -40,40 +38,28 @@ This is only necessary if you want to create an image from scratch (from an exis
 ubuntu box). If you only have to do something incrementally, you can just base your
 box on the existing dcor-test images.
 
-Install prerequisites:
-
-.. code::
+Install prerequisites::
 
     apt install virtualbox vagrant
 
+Download and setup the base image::
 
-Download and setup the base image:
-
-.. code::
-
+    cd from_scratch
     vagrant up
 
-Login to the virual machine:
-
-.. code::
+Login to the virual machine::
 
     vagrant ssh
-
 
 At this point, install CKAN/DCOR according to the description at
 https://dc.readthedocs.io/en/latest/sec_self_hosting.html.
 
-
-Also, make sure that the following packages are installed in the ckan environment:
-
-.. code::
+Also, make sure that the following packages are installed in the ckan environment::
 
     pip install codecov coverage pytest-ckan
 
 
-When job is finished then create the box
-
-.. code::
+When job is finished then create the box::
 
     # cleanup
     apt autoremove
@@ -85,3 +71,15 @@ When job is finished then create the box
     # create package
     vagrant package
 
+
+Box upgrade workflow
+====================
+
+If apt/CKAN/DCOR packages only require updates, then it makes
+sense to base a new version of an image on an existing image::
+
+    cd from_previous
+    rm -rf .vagrant
+    vagrant up
+
+Once finished with the update, follow the box creation steps above.
