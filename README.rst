@@ -64,12 +64,15 @@ When job is finished then create the box::
     # cleanup
     apt autoremove
     apt clean
+    # choose the zeroing size according ot the difference in `df -h` and
+    # the file size in ~/VirtualBox VMs/from_previous_default_...
     dd if=/dev/zero of=/root/zero.bin bs=1M count=1000 && rm -rf /root/zero.bin
     # zero-out swap
+    swapoff /dev/sda2
     dd if=/dev/zero of=/dev/sda2 bs=1M
-    mkswap /dev/sda2  # and edit /etc/fstab with new UUID
-    # create package
-    vagrant package
+    mkswap /dev/sda2  # and edit /etc/fstab and /etc/initramfs-tools/conf.d/resume with new UUID
+    # logout and create the package
+    vagrant package --output dcor-test_0.1.0
 
 
 Box upgrade workflow
@@ -81,5 +84,6 @@ sense to base a new version of an image on an existing image::
     cd from_previous
     rm -rf .vagrant
     vagrant up
+    vagrant ssh  # login and do the updating
 
 Once finished with the update, follow the box creation steps above.
