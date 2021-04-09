@@ -82,7 +82,7 @@ If apt/CKAN/DCOR packages only require updates, then it makes
 sense to base a new version of an image on an existing image::
 
     cd from_previous
-    rm -rf .vagrant
+    vagrant destroy
     vagrant up
     vagrant ssh  # login and do the updating
 
