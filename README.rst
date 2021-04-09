@@ -72,7 +72,7 @@ When job is finished then create the box::
     dd if=/dev/zero of=/dev/sda2 bs=1M
     mkswap /dev/sda2  # and edit /etc/fstab and /etc/initramfs-tools/conf.d/resume with new UUID
     # logout and create the package
-    vagrant package --output dcor-test_0.1.0
+    vagrant package --output dcor-test_0.1.0.box
 
 
 Box upgrade workflow
