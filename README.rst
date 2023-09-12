@@ -14,6 +14,9 @@ that looked like a lot of code to maintain. The upside of virtualbox images is t
 take your time to set it up (which is very convenient if you use vagrant) and then just
 distribute the final box image for testing.
 
+By default, the ``Vagrantfile`` gives access to the DCOR web interface (http://127.0.0.1:8888)
+as well as the SOLR search interface (http://127.0.0.1:8983)
+
 
 How does testing work?
 ======================
@@ -57,7 +60,9 @@ https://dc.readthedocs.io/en/latest/sec_self_hosting.html.
 Also, make sure that the following packages are installed in the ckan environment::
 
     pip install codecov coverage pytest-ckan
-
+    # required by ckan test suite:
+    pip install pytest_factoryboy
+    pip install --upgrade pytest-rerunfailures
 
 When job is finished then create the box::
 
