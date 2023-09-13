@@ -66,9 +66,12 @@ Also, make sure that the following packages are installed in the ckan environmen
 
 When job is finished then create the box::
 
-    # cleanup
+    # cleanup apt
     apt autoremove
     apt clean
+    # cleanup pip
+    source /usr/lib/ckan/default/bin/activate
+    pip cache purge
     # zero-out swap
     swapoff /dev/sda2
     dd if=/dev/zero of=/dev/sda2 bs=1M
