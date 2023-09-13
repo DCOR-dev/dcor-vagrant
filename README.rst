@@ -83,7 +83,6 @@ When job is finished then create the box::
     systemctl stop nginx supervisor rsyslog unattended-upgrades postgresql solr
     systemctl stop syslog.socket rsyslog.service systemd-journald
     systemctl stop systemd-journald && mount -o remount,ro /dev/sda3
-    mount -o remount,ro /dev/sda3
     zerofree -v /dev/sda3
     # logout and create the package
     vagrant package --output dcor-test_0.1.0.box
