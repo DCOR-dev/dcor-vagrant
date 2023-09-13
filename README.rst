@@ -69,13 +69,13 @@ When job is finished then create the box::
     # cleanup
     apt autoremove
     apt clean
-    # choose the zeroing size according ot the difference in `df -h` and
-    # the file size in ~/VirtualBox VMs/from_previous_default_...
-    dd if=/dev/zero of=/root/zero.bin bs=1M count=1000 && rm -rf /root/zero.bin
     # zero-out swap
     swapoff /dev/sda2
     dd if=/dev/zero of=/dev/sda2 bs=1M
     mkswap /dev/sda2  # and edit `/etc/fstab` as well as `/etc/initramfs-tools/conf.d/resume` with new UUID
+    # zero-out the empty space on the root partition
+    mount -o remount,ro /dev/sda1
+    zerofree -v /dev/sda1
     # logout and create the package
     vagrant package --output dcor-test_0.1.0.box
 
