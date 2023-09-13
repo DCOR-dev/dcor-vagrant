@@ -76,9 +76,15 @@ When job is finished then create the box::
     swapoff /dev/sda2
     dd if=/dev/zero of=/dev/sda2 bs=1M
     mkswap /dev/sda2  # and edit `/etc/fstab` as well as `/etc/initramfs-tools/conf.d/resume` with new UUID
-    # zero-out the empty space on the root partition
+    # zero-out the empty space on the boot and root partitions
     mount -o remount,ro /dev/sda1
     zerofree -v /dev/sda1
+    # This requires you to stop all services via systemctl
+    systemctl stop nginx supervisor rsyslog unattended-upgrades postgresql solr
+    systemctl stop syslog.socket rsyslog.service systemd-journald
+    systemctl stop systemd-journald && mount -o remount,ro /dev/sda3
+    mount -o remount,ro /dev/sda3
+    zerofree -v /dev/sda3
     # logout and create the package
     vagrant package --output dcor-test_0.1.0.box
 
