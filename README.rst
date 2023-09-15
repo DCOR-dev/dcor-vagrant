@@ -72,6 +72,7 @@ When job is finished then create the box::
     # cleanup pip
     source /usr/lib/ckan/default/bin/activate
     pip cache purge
+    # At this point it makes sense to restart.
     # zero-out swap
     swapoff /dev/sda2
     dd if=/dev/zero of=/dev/sda2 bs=1M
@@ -82,6 +83,7 @@ When job is finished then create the box::
     # This requires you to stop all services via systemctl
     systemctl stop nginx supervisor rsyslog unattended-upgrades postgresql solr
     systemctl stop syslog.socket rsyslog.service systemd-journald
+    # Try `lsof / | awk '$4 ~ /[0-9].*w/'` if this does not work:
     systemctl stop systemd-journald && mount -o remount,ro /dev/sda3
     zerofree -v /dev/sda3
     # logout and create the package
