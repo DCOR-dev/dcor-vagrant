@@ -81,10 +81,10 @@ When job is finished then create the box::
     mount -o remount,ro /dev/sda1
     zerofree -v /dev/sda1
     # This requires you to stop all services via systemctl
-    systemctl stop minio nginx postgresql rsyslog solr supervisor unattended-upgrades
+    systemctl stop minio nginx postgresql rsyslog solr supervisor
     systemctl stop syslog.socket rsyslog.service systemd-journald
     # Try `lsof / | awk '$4 ~ /[0-9].*w/'` if this does not work:
-    systemctl stop systemd-journald && mount -o remount,ro /dev/sda3
+    systemctl stop systemd-journald systemd-journald.socket && mount -o remount,ro /dev/sda3
     zerofree -v /dev/sda3
     # logout and create the package
     vagrant package --output dcor-test_0.1.0.box
