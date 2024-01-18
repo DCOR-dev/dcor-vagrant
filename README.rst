@@ -57,6 +57,7 @@ Login to the virual machine::
 At this point, install CKAN/DCOR according to the description at
 https://dc.readthedocs.io/en/latest/sec_self_hosting.html.
 
+
 Also, make sure that the following packages are installed in the ckan environment::
 
     pip install codecov coverage pytest-ckan
@@ -99,6 +100,6 @@ sense to base a new version of an image on an existing image::
     cd from_previous
     vagrant destroy
     vagrant up
-    vagrant ssh  # login and do the updating
+    vagrant ssh
 
-Once finished with the update, follow the box creation steps above.
+Once finished with the DCOR update, follow the box creation steps above.
