@@ -88,7 +88,7 @@ When job is finished then create the box::
     systemctl stop systemd-journald systemd-journald.socket && mount -o remount,ro /dev/sda3
     zerofree -v /dev/sda3
     # logout and create the package
-    vagrant package --output dcor-test_0.1.0.box
+    vagrant package --output dcor-test_0.5.3.box
 
 
 Box upgrade workflow
