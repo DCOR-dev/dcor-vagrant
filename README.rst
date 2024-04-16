@@ -55,14 +55,15 @@ Login to the virual machine::
     vagrant ssh
 
 At this point, install CKAN/DCOR according to the description at
-https://dc.readthedocs.io/en/latest/sec_self_hosting.html.
+https://dc.readthedocs.io/en/latest/https://dc.readthedocs.io/en/latest/sec_self_hosting/index.html.
+The default admin user and password for MinIO is `minio-vagrant`.
 
 
 Also, make sure that the following packages are installed in the ckan environment::
 
-    pip install codecov coverage pytest-ckan
+    pip install --upgrade codecov coverage pytest-ckan
     # required by ckan test suite:
-    pip install pytest_factoryboy
+    pip install --upgrade pytest_factoryboy
     pip install --upgrade pytest-rerunfailures
 
 When job is finished then create the box::
@@ -88,7 +89,8 @@ When job is finished then create the box::
     systemctl stop systemd-journald systemd-journald.socket && mount -o remount,ro /dev/sda3
     zerofree -v /dev/sda3
     # logout and create the package
-    vagrant package --output dcor-test_0.5.3.box
+    vagrant halt
+    vagrant package --output dcor-test_0.6.0.box
 
 
 Box upgrade workflow
@@ -98,7 +100,7 @@ If apt/CKAN/DCOR packages only require updates, then it makes
 sense to base a new version of an image on an existing image::
 
     cd from_previous
-    vagrant destroy
+    vagrant destroy -f
     vagrant up
     vagrant ssh
 
